@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: true,
+  //API
+  apiHost: "http://localhost/bonita-portal-api/",
+  //apiHost: "http://200.41.233.251:4423/bonita-portal-api/",
+  
+  defaultPage: '/tasks',
+  
+  //CACHE
+  cachePrefix: "bonita",
+  maxCacheItems: 200,
 };

@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="form-box centro">
+            
+            <h2>Inicio de Sesion</h2>
+            
+            <form (submit)="login($event)" #datosForm="ngForm" class="collapse show">
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-2 col-form-label">Usuario</label>
+                  <div class="col-4">
+                    <input class="form-control" name="username" type="text" placeholder="Nombre Usuario" [(ngModel)]="loginForm.username">
+                  </div>
+                  <label for="example-text-input" class="col-2 col-form-label">Password</label>
+                  <div class="col-4">
+                      <input class="form-control" name="password" type="password" placeholder="" [(ngModel)]="loginForm.password">
+                  </div>
+                </div>
+               
+                <div class="alert alert-success" role="alert" [hidden]="!success" [innerHtml]="success"></div>
+                <div class="alert alert-danger" role="alert" [hidden]="!error" [innerHtml]="error"></div>
+                
+                <button type="submit" class="btn boton-crear" [disabled]="submitted">Iniciar</button>             
+                
+            </form>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>

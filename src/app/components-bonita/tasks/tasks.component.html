@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="form-box centro">            
+            <h2>Tareas</h2>
+            
+            <div class="col-md-12 table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Prioridad</th>
+                            <th>Fecha de Vencimiento</th>
+                            <th>Asignada</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="item-component-html">
+                        <tr *ngFor='let task of tasks'>
+                            <td>{{task.id}}</td>
+                            <td>{{task.name}}</td>
+                            <td>{{task.priority}}</td>
+                            <td>{{task.dueDate}}</td>
+                            <td>
+                                <span *ngIf="task.assigned_id">SI</span>
+                                <span *ngIf="!task.assigned_id">NO</span>
+                            </td>
+                            <td class="td-actions text-right">
+                                <button type="button" title="Asignar" class="btn btn-secundario btn-xs" (click)="asignar(task)">Asignar</button>
+                                <button type="button" title="Liberar" class="btn btn-secundario btn-xs" (click)="liberar(task)">Liberar</button>
+                                <button type="button" title="Hacer" class="btn btn-secundario btn-xs" (click)="hacer(task)">hacer</button>
+                            </td>
+                        </tr>                                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div *ngIf="task">
+    
+</div>
