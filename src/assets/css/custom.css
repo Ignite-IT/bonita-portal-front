@@ -182,17 +182,38 @@ body{
 @media (max-width: 990px) {
   .centro {
     padding-left:  1em;
-	padding-right: 1em;
+    padding-right: 1em;
   }
   .col-izq{
     padding-left:  1em;
-	padding-right: 1em;
+    padding-right: 1em;
   }
 }
 
 /*
     IFRAME TASK
 */
-.viewer-frame {
-    min-height: 300px;
+
+.modal-vertical-dialog{
+    height: 90vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+.modal-vertical-content{
+    height: 100%;
+}
+.modal-vertical-body{
+    height: 100%;
+}
+.vertical-frame {
+    height: 95%;
+}
+
+@media (min-width: 992px){
+    .modal-lg {
+        max-width: none;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%
+    }
 }
