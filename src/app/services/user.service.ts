@@ -7,10 +7,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import { GlobalVars } from '../services/globalVars';
 
-export interface User {
-    user_id: number;
-    user_name: string;
-}
+import {User} from '../models/user';
 
 @Injectable()
 export class UserService{
@@ -33,6 +30,7 @@ export class UserService{
 
     //LOGIN - PREFERENCES
     login(username, password): Observable<any> {
+        this.globalVars.deleteSessionData();
         const url = `${this.globalVars.apiHost}${this.loginUrl}`;
         let body= {username: username, password: password};
         return this.http.post(url, JSON.stringify(body), this.globalVars.getOptionsRequest()).pipe(
@@ -53,13 +51,26 @@ export class UserService{
             map((res: any) => {
                 let user: User = {user_id: res.user_id, user_name: res.user_name};
                 this.globalVars.setActualUser(user);
+                this.loginUserSource.next(this.globalVars.getActualUser());
                 return res;
+            }), catchError((err, caught) => {
+                this.globalVars.deleteSessionData();
+                return err;
             })
         );
     }
     
     logout() {
+        const url = `${this.globalVars.apiHost}${this.loginUrl}`;
         this.globalVars.deleteSessionData();
-        this.logoutUserSource.next();
+        return this.http.delete(url, this.globalVars.getOptionsRequest()).pipe(
+            map((res: any) => {
+                this.logoutUserSource.next();
+                return res;
+            }), catchError((err, caught) => {
+                this.logoutUserSource.next();
+                return err;
+            })
+        );        
     }      
 }

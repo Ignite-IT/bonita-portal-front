@@ -6,8 +6,13 @@ import { FormsModule }   from '@angular/forms';
 import { DirectivesComponentModule } from '../directives-component/directives-component.module';
 
 import {BonitaService} from './bonita.service';
+import {BonitaCommunicate} from './bonita.communicate';
 
 import { TasksComponent } from './tasks/tasks.component';
+import {CasesComponent} from './cases/cases.component';
+import {ProcessComponent} from './process/process.component';
+
+import {TasksModalComponent} from './tasks_modal/tasks_modal.component';
 
 @NgModule({
   imports: [
@@ -19,12 +24,21 @@ import { TasksComponent } from './tasks/tasks.component';
   ],
   declarations: [
     TasksComponent,
+    CasesComponent,
+    ProcessComponent,
+    
+    TasksModalComponent
   ],
   providers: [
-    BonitaService
+    BonitaService,
+    BonitaCommunicate
   ],
   exports: [    
     TasksComponent,
+    CasesComponent,
+    ProcessComponent,
+    
+    TasksModalComponent
   ]
 })
 export class ComponentsBonitaModule { }

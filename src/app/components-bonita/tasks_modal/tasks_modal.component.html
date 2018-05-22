@@ -1,0 +1,14 @@
+<div #taskModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" *ngIf="show">
+            <div class="modal-header">
+                <h5 class="modal-title">Tarea: {{task.displayName}} - {{task.id}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">&times;</button>                
+                <hr>
+            </div>
+            <div class="modal-body">
+                <iframe class="viewer-frame" seamless="" width="100%" height="100%" frameborder="0" [src]="url"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

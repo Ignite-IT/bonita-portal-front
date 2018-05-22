@@ -2,14 +2,14 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <div class="form-box centro">            
-            <h2>Tareas</h2>
+            <h2>Casos Activos</h2>
             <div class="row">
                 <div class="col-md-12 filtros">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-inline" (submit)="filter(1, $event)" #searchTaskForm="ngForm">
+                            <form class="form-inline" (submit)="filter(1, $event)" #searchCaseForm="ngForm">
                                 <div class="input-group" style="float: left">
-                                    <input type="text" placeholder="Búsqueda de Tareas" name="search" [(ngModel)]="params.s" class="form-control" />                       
+                                    <input type="text" placeholder="Búsqueda de Casos" name="search" [(ngModel)]="params.s" class="form-control" />                       
                                 </div>
                                 <button type="submit" class="btn btn-menu">
                                     <i class="icon-search">icon-search</i><div class="ripple-container"></div>
@@ -31,30 +31,16 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Prioridad</th>
-                                <th>Fecha de Vencimiento</th>
-                                <th>Asignada</th>
-                                <th></th>
+                                <th>Iniciado</th>
+                                <th>Iniciado Por</th>
                             </tr>
                         </thead>
                         <tbody id="item-component-html">
-                            <tr *ngFor='let task of tasks'>
-                                <td>{{task.id}}</td>
-                                <td>{{task.displayName}}</td>
-                                <td>{{task.priority}}</td>
-                                <td>
-                                    <span *ngIf="task.dueDate">{{task.dueDate}}</span>
-                                    <span *ngIf="task.dueDate">-</span>
-                                </td>
-                                <td>
-                                    <span *ngIf="task.assigned_id">SI</span>
-                                    <span *ngIf="!task.assigned_id">NO</span>
-                                </td>
-                                <td class="td-actions text-right">
-                                    <button *ngIf="!task.assigned_id" type="button" title="Asignar" class="btn btn-secundario btn-xs" (click)="assign(task)">Asignar</button>
-                                    <button *ngIf="task.assigned_id" type="button" title="Liberar" class="btn btn-secundario btn-xs" (click)="unassign(task)">Liberar</button>
-                                    <button *ngIf="task.assigned_id" type="button" title="Hacer" class="btn btn-secundario btn-xs" (click)="doTask(task)">hacer</button>
-                                </td>
+                            <tr *ngFor='let case of cases'>
+                                <td>{{case.id}}</td>
+                                <td>{{case.processDefinitionId.displayName}}</td>
+                                <td>{{case.start}}</td>
+                                <td>{{case.started_by}}</td>
                             </tr>                                
                         </tbody>
                     </table>

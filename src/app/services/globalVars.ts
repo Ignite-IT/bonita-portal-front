@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import {HttpHeaders, HttpParams } from '@angular/common/http';
 
+import {DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 import {environment} from '../../environments/environment';
 
 import { Observable } from 'rxjs/Rx';
 import { Subject }    from 'rxjs/Subject';
 
-//import { User } from '../models/user';
+import { User } from '../models/user';
 
 @Injectable()
 export class GlobalVars {
     public authorization: string = null;
-    public actualUser: any = null;
+    public actualUser: User = null;
         
     public apiHost: string= environment.apiHost;
 
@@ -20,7 +22,7 @@ export class GlobalVars {
     // Observable string streams
     logoutUser$ = this.logoutUserSource.asObservable();
 
-    constructor() {
+    constructor(private sanitizer: DomSanitizer) {
         this.getAuthorization();
     }
 
@@ -63,8 +65,10 @@ export class GlobalVars {
         let opts= { headers: headers };
         if(params){
             let httpParams: HttpParams = new HttpParams();
-            for (var prop in params) {                
-                httpParams= httpParams.append(prop, params[prop]);
+            for (var prop in params) {   
+                if(params[prop]){             
+                    httpParams= httpParams.append(prop, params[prop]);
+                }
             }
             opts['params']= httpParams;
         }
@@ -111,5 +115,11 @@ export class GlobalVars {
             //Aca estarian solo los errores que devuelve error que deben materializarse en comunicacion con el usuario.
             return Observable.throw(error._body != '' ? error.json() : 'Error');
         }
+    }
+    
+    //
+    //UTILS VARIOS
+    public linkSanitizer(url: string): SafeResourceUrl{
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);   
     }
 }

@@ -31,29 +31,21 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Prioridad</th>
-                                <th>Fecha de Vencimiento</th>
-                                <th>Asignada</th>
+                                <th>Version</th>
+                                <th>Ultima Modificacion</th>
+                                <th>Estado</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody id="item-component-html">
-                            <tr *ngFor='let task of tasks'>
-                                <td>{{task.id}}</td>
-                                <td>{{task.displayName}}</td>
-                                <td>{{task.priority}}</td>
-                                <td>
-                                    <span *ngIf="task.dueDate">{{task.dueDate}}</span>
-                                    <span *ngIf="task.dueDate">-</span>
-                                </td>
-                                <td>
-                                    <span *ngIf="task.assigned_id">SI</span>
-                                    <span *ngIf="!task.assigned_id">NO</span>
-                                </td>
+                            <tr *ngFor='let process of processes'>
+                                <td>{{process.id}}</td>
+                                <td>{{process.displayName}}</td>
+                                <td>{{process.version}}</td>
+                                <td>{{process.last_update_date}}</td>
+                                <td>{{process.activationState}}</td>
                                 <td class="td-actions text-right">
-                                    <button *ngIf="!task.assigned_id" type="button" title="Asignar" class="btn btn-secundario btn-xs" (click)="assign(task)">Asignar</button>
-                                    <button *ngIf="task.assigned_id" type="button" title="Liberar" class="btn btn-secundario btn-xs" (click)="unassign(task)">Liberar</button>
-                                    <button *ngIf="task.assigned_id" type="button" title="Hacer" class="btn btn-secundario btn-xs" (click)="doTask(task)">hacer</button>
+                                    <button *ngIf="process.activationState == 'ENABLED'" type="button" title="Iniciar Caso" class="btn btn-secundario btn-xs" (click)="startCase(process)">Iniciar Caso</button>
                                 </td>
                             </tr>                                
                         </tbody>

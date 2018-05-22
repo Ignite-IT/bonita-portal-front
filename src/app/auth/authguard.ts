@@ -46,15 +46,20 @@ export class AuthGuard implements CanActivate {
             if(this.globalVars.getActualUser() != null){                
                 observer.next(true);
             }else{
-                return this.userService.logged().subscribe(
-                rta => {
-                    observer.next(true);
-                },err => {
-                    // not logged in so redirect to login page with the return url and return false
-                    //this.router.navigate(['/home'], { queryParams: { returnUrl: state.url }});
+                if (this.globalVars.authorization != null) {
+                    return this.userService.logged().subscribe(
+                    rta => {
+                        observer.next(true);
+                    },err => {
+                        // not logged in so redirect to login page with the return url and return false
+                        //this.router.navigate(['/home'], { queryParams: { returnUrl: state.url }});
+                        this.router.navigate(['/login']);
+                        observer.next(false);
+                    });
+                } else {
                     this.router.navigate(['/login']);
                     observer.next(false);
-                });
+                }                
             }        
         });
     }
@@ -75,14 +80,18 @@ export class NoLogin implements CanActivate {
                 this.router.navigate([page]);
                 observer.next(false);
             }else{
-                return this.userService.logged().subscribe(
-                rta => {
-                    let page: string = environment.defaultPage;
-                    this.router.navigate([page]);
-                    observer.next(false);
-                },err => {
+                if (this.globalVars.authorization != null) {
+                    return this.userService.logged().subscribe(
+                    rta => {
+                        let page: string = environment.defaultPage;
+                        this.router.navigate([page]);
+                        observer.next(false);
+                    },err => {
+                        observer.next(true);
+                    });
+                } else {
                     observer.next(true);
-                });
+                }
             }        
         });
     }

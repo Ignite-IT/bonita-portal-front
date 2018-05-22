@@ -189,3 +189,10 @@ body{
 	padding-right: 1em;
   }
 }
+
+/*
+    IFRAME TASK
+*/
+.viewer-frame {
+    min-height: 300px;
+}
