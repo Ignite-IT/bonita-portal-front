@@ -74,7 +74,7 @@ body{
 	padding: 0 2em;
 }
 .menu{
-	font-family: Montserrat, SemiBold;
+	font-family: MontserratSemiBold;
 }
 
 /*
@@ -191,6 +191,71 @@ body{
 }
 
 /*
+    MODAL
+*/
+.modal-title{
+    color: #66C78A;
+    font-size: 24px;
+    margin-bottom: 1.5em;
+}
+.modal-header
+{
+    display: block!important;
+    border-bottom: 1px solid #eceeef;
+}
+.modal-title
+{
+    float: left;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+.modal-header .close
+{
+    float: right;
+    margin-right: 15px;
+    padding-right: 0;
+}
+
+/*
+    TABLAS
+*/
+
+.btn-add-modal, .btn-add-tabla {
+    border: none;
+    background-color: transparent;
+    color: #66C78A;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-family: MontserratSemiBold;
+    padding: 0px 15px;
+}
+.modal-body, .tabla th{
+    border-top: none;
+    font-size: 14px;
+    font-family: MontserratLight;
+    color: #66C78A;
+}
+
+.modal-body, .tabla td{
+    font-size: 12px;
+    font-family: MontserratLight;
+    color: #000000;
+}
+
+.modal-body, .tabla p{
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-family: MontserratLight;
+    font-size: 12px;
+}
+.tabla-accion{
+    width: 95%;
+    margin-top: 12px;
+}
+.td-actions{
+    padding-top: 0px !important;
+}
+/*
     IFRAME TASK
 */
 
@@ -203,10 +268,10 @@ body{
     height: 100%;
 }
 .modal-vertical-body{
-    height: 100%;
+    height: 80%;
 }
 .vertical-frame {
-    height: 95%;
+    height: 100%;
 }
 
 @media (min-width: 992px){
