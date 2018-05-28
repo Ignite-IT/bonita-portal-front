@@ -12,13 +12,13 @@
                                     <input type="text" placeholder="Búsqueda de Tareas" name="search" [(ngModel)]="params.s" class="form-control" />                       
                                 </div>
                                 <button type="submit" class="btn btn-menu">
-                                    <i class="icon-search">icon-search</i><div class="ripple-container"></div>
+                                    <i class="icon-search"></i><div class="ripple-container"></div>
                                 </button>
                                 <button type="submit" class="btn btn-menu">
-                                    <i class="icon-arrows-cw">icon-arrows-cw</i><div class="ripple-container"></div>
+                                    <i class="icon-arrows-cw"></i><div class="ripple-container"></div>
                                 </button>
                                 <button type="button" class="btn btn-menu" (click)="resetFilter()">
-                                    <i class="icon-cancel-circled">icon-cancel-circled</i><div class="ripple-container"></div>
+                                    <i class="icon-cancel-circled"></i><div class="ripple-container"></div>
                                 </button>
                             </form>
                         </div>
@@ -26,13 +26,13 @@
                 </div>
                 
                 <div class="col-md-12 table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped tabla">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
                                 <th>Prioridad</th>
-                                <th>Fecha de Vencimiento</th>
+                                <th>Vencimiento</th>
                                 <th>Asignada</th>
                                 <th></th>
                             </tr>
@@ -51,9 +51,9 @@
                                     <span *ngIf="!task.assigned_id">NO</span>
                                 </td>
                                 <td class="td-actions text-right">
-                                    <button *ngIf="!task.assigned_id" type="button" title="Asignar" class="btn btn-secundario btn-xs" (click)="assign(task)">Asignar</button>
-                                    <button *ngIf="task.assigned_id" type="button" title="Liberar" class="btn btn-secundario btn-xs" (click)="unassign(task)">Liberar</button>
-                                    <button *ngIf="task.assigned_id" type="button" title="Hacer" class="btn btn-secundario btn-xs" (click)="doTask(task)">hacer</button>
+                                    <button *ngIf="!task.assigned_id" type="button" title="Asignar" class="btn btn-sm tabla-accion" (click)="assign(task)">Asignar</button>
+                                    <button *ngIf="task.assigned_id" type="button" title="Liberar" class="btn btn-sm tabla-accion" (click)="unassign(task)">Liberar</button>
+                                    <button *ngIf="task.assigned_id" type="button" title="Hacer" class="btn btn-sm tabla-accion" (click)="doTask(task)">Hacer</button>
                                 </td>
                             </tr>                                
                         </tbody>
