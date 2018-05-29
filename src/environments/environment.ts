@@ -6,8 +6,8 @@
 export const environment = {
   production: false,
   //API
-  apiHost: "http://192.168.0.35/bonita-portal-api/",
-  //apiHost: "http://localhost/bonita-portal-api/",
+  //apiHost: "http://192.168.0.35/bonita-portal-api/",
+  apiHost: "http://localhost/bonita-portal-api/",
   //apiHost: "http://200.41.233.251:4423/bonita-portal-api/",
   
   defaultPage: '/tasks',
