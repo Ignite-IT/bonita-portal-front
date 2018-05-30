@@ -43,8 +43,8 @@
                                 <td>{{task.displayName}}</td>
                                 <td>{{task.priority}}</td>
                                 <td>
-                                    <span *ngIf="task.dueDate">{{task.dueDate}}</span>
-                                    <span *ngIf="task.dueDate">-</span>
+                                    <span *ngIf="task.dueDate != ''">{{task.dueDate | date: 'dd/MM/yyyy hh:mm:ss'}}</span>
+                                    <span *ngIf="task.dueDate == ''">-</span>
                                 </td>
                                 <td>
                                     <span *ngIf="task.assigned_id">SI</span>

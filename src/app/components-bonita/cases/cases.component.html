@@ -39,8 +39,8 @@
                             <tr *ngFor='let case of cases'>
                                 <td>{{case.id}}</td>
                                 <td>{{case.processDefinitionId.displayName}}</td>
-                                <td>{{case.start}}</td>
-                                <td>{{case.started_by}}</td>
+                                <td>{{case.start | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                                <td>{{case.started_by.userName}}</td>
                             </tr>                                
                         </tbody>
                     </table>

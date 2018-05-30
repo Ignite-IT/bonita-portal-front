@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app.routing';
@@ -11,6 +11,8 @@ import { Cache }   from './services/cache';
 import { ProjectUtils } from './services/utils';
 
 import {UserService} from './services/user.service';
+
+import {CommonInterceptor} from './http/CommonInterceptor';
 
 import {DirectivesComponentModule} from './directives-component/directives-component.module';
 
@@ -49,7 +51,9 @@ import { AuthGuard, NoLogin }   from './auth/authguard';
     UserService,
     
     AuthGuard,
-    NoLogin
+    NoLogin,
+    
+    { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true }  
   ],
   bootstrap: [AppComponent]
 })

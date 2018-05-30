@@ -42,7 +42,7 @@
                                 <td>{{process.id}}</td>
                                 <td>{{process.displayName}}</td>
                                 <td>{{process.version}}</td>
-                                <td>{{process.last_update_date}}</td>
+                                <td>{{process.last_update_date | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                                 <td>{{process.activationState}}</td>
                                 <td class="td-actions text-right">
                                     <button *ngIf="process.activationState == 'ENABLED'" type="button" title="Iniciar Caso" class="btn btn-sm tabla-accion" (click)="startCase(process)">Iniciar Caso</button>

@@ -86,13 +86,7 @@ export class GlobalVars {
         console.log(error);
         //let errorOb= JSON.stringify(error);
         if (error.status == 401) {
-            let info= error.json();
-            if(info.code == 'error-token'){
-                this.logoutUserSource.next();
-                //alert("Su sesion ha expirado, vuelva a iniciar su sesion");
-            }else{
-                alert("Usted no tiene acceso a esta funcionalidad");
-            }
+            this.logoutUserSource.next();
             return Observable.throw(error._body != '' ? error.json() : 'Prohibido');            
 //            const url= `${this.apiHost}login`;
 //            return this.http.delete(url, this.getOptionsRequest())
