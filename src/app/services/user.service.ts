@@ -54,7 +54,6 @@ export class UserService{
                 this.loginUserSource.next(this.globalVars.getActualUser());
                 return res;
             }), catchError((err, caught) => {
-                console.log("aca-si");
                 this.globalVars.deleteSessionData();
                 return err;
             })

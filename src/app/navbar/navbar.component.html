@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-8 ">
         <div class="title centro ">
-            <a class="btn btn-sm float-right" (click)="closeSession()">Cerrar Sesion</a>
+            <a class="btn btn-sm float-right" *ngIf="user" (click)="closeSession()">Cerrar Sesion</a>
             <h1>Portal de Procesos</h1>
             <p><span *ngIf="user">{{user.user_name}}</span></p>
         </div>
