@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 
 //GENERALES
 import {GenericFormComponent} from './components/generic-form.component';
+import {PagerComponent} from './components/pager/pager.component';
 
 //GENERALES
 import { ConfirmClickDirective }   from './directives/confirm_click.directive';
@@ -18,12 +19,15 @@ import { FormatDatePipe }   from './directives/format-date.pipe';
   ],
   declarations: [
     GenericFormComponent,
+    PagerComponent,
   
     ConfirmClickDirective,
     
     FormatDatePipe,
   ],
   exports: [
+    PagerComponent,
+  
     ConfirmClickDirective,
     
     FormatDatePipe,

@@ -1,0 +1,26 @@
+<div *ngIf="info">
+    <div class="row pager">        
+        <div class="col-sm-6 text-left text-show">Mostrando pagina {{info.page}} de {{info.countOfPages}} - Total de {{info.count}} resultados</div>
+        <div class="col-sm-6 text-left">
+            <ul class="pagination float-right">
+                <li class="page-item">
+                    <a class="page-link" (click)="filterPage(1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                      
+                <li *ngFor="let page of info.pages" class="page-item" [ngClass]="{'active': page==actualPage }">
+                    <a (click)="filterPage(page)" class="page-link">{{page}} <span class="sr-only">(current)</span></a>
+                </li>     
+                      
+                <li class="page-item">
+                    <a class="page-link" (click)="filterPage(info.countOfPages)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

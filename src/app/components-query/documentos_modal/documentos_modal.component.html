@@ -1,0 +1,57 @@
+<div #documentosModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" *ngIf="show">
+            <div class="modal-header">
+                <h5 class="modal-title">Documentación del Tramite</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">&times;</button>                
+                
+            </div>
+            <div class="modal-body">
+<!--                <div *ngIf="documento">
+                    <documentacion_form [documentoForm]="documento" (actualize)="actualizarDocumento($event)" (cancel)="cancelarDocumento($event)"></documentacion_form>
+                </div>-->
+                
+<!--                <div *ngIf="!documento">
+                    <button type="button" title="Nuevo" class="btn btn-secundario btn-add-modal btn-xs" (click)="nuevoDocumento()"> <i class="icon-plus"></i>Nuevo</button>
+                </div>-->
+                
+                <div class="row">
+                    <div class="col-md-12 table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Tipo</th>
+                                    <th>Clase</th>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="item-component-html">
+                                <tr *ngFor='let doc of documentos'>
+                                    <td>{{doc.id_documento}}</td>
+                                    <td>{{doc.tipoDocumento.descripcion}}</td>
+                                    <td>{{doc.claseDocumento.descripcion}}</td>
+                                    <td>{{doc.nom_documento}}</td>
+                                    <td>{{doc.descripcion}}</td>
+                                    <td>{{doc.estado.descripcion}}</td>
+                                    <td class="td-actions">
+<!--                                        <button *ngIf="doc.estado.estado != codigoReemplaza" type="button" title="Reemplazar" class="btn btn-sm tabla-accion" (click)="reemplazarDocumento(doc)">Reemplazar</button>
+                                        <button *ngIf="doc.estado.estado != codigoReemplaza" type="button" title="Modificar" class="btn btn-sm tabla-accion" (click)="modificarDocumento(doc)">Modificar</button>-->
+                                        <button type="button" title="Ver" class="btn  btn-sm tabla-accion" (click)="verDocumento(doc)">Ver</button>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="documentos != null && documentos.length == 0">
+                                    <td colspan="7">Sin Documentos</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <pager [info]="info" [actualPage]="params.pagina" (filter)="filter($event)"></pager>
+            </div>
+        </div>
+    </div>
+</div>

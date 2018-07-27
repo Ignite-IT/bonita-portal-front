@@ -11,12 +11,14 @@ import { Cache }   from './services/cache';
 import { ProjectUtils } from './services/utils';
 
 import {UserService} from './services/user.service';
+import {DocumentacionService} from './services/documentacion.service';
 
 import {CommonInterceptor} from './http/CommonInterceptor';
 
 import {DirectivesComponentModule} from './directives-component/directives-component.module';
 
 import { ComponentsBonitaModule } from './components-bonita/components-bonita.module';
+import {ComponentsQueryModule} from './components-query/components-query.module';
 
 import { AppComponent } from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -41,7 +43,8 @@ import { AuthGuard, NoLogin }   from './auth/authguard';
     
     DirectivesComponentModule,
     
-    ComponentsBonitaModule
+    ComponentsBonitaModule,
+    ComponentsQueryModule,
   ],
   providers: [
     GlobalVars,
@@ -49,6 +52,7 @@ import { AuthGuard, NoLogin }   from './auth/authguard';
     ProjectUtils,
     
     UserService,
+    DocumentacionService,
     
     AuthGuard,
     NoLogin,
