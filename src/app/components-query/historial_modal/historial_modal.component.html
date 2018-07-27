@@ -1,0 +1,53 @@
+<div #historialModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" *ngIf="show">
+            <div class="modal-header">
+                <h5 class="modal-title">Historial del Tramite</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">&times;</button>                
+                
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Usuario</th>
+                                    <th>Grupo</th>
+                                    <th>Actividad</th>
+                                    <th>Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="item-component-html">
+                                <ng-container *ngFor='let mov of movimientos'>
+                                    <tr>
+                                        <td>{{mov.fecha | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{mov.usuario}}</td>
+                                        <td>{{mov.grupo}}</td>
+                                        <td>{{mov.actividad.descripcion}}</td>
+                                        <td>
+                                            <span *ngIf="mov.observaciones != null && mov.observaciones.length <= cant">{{mov.observaciones}}</span>
+                                            <span *ngIf="mov.observaciones != null && mov.observaciones.length >= cant">{{mov.observaciones.substr(0, cant)}}...</span>
+                                            <button type="button" class="btn btn-sm" *ngIf="!mov.showObservaciones && mov.observaciones != null && mov.observaciones.length > cant" (click)="mov.showObservaciones = true">Expandir</button>
+                                            <button type="button" class="btn btn-sm" *ngIf="mov.showObservaciones" (click)="mov.showObservaciones = false">Cerrar</button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="mov.showObservaciones">
+                                        <td colspan="5">
+                                            {{mov.observaciones}}
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                                <tr *ngIf="movimientos != null && movimientos.length == 0">
+                                    <td colspan="5">Sin Movimientos</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <pager [info]="info" [actualPage]="params.pagina" (filter)="filter($event)"></pager>
+            </div>
+        </div>
+    </div>
+</div>
