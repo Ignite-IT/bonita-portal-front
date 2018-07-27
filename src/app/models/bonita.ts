@@ -13,7 +13,7 @@ export class Case{
     public name;
     public processDefinitionId: Process;
     public start;
-    public started_by;
+    public started_by: any;
 }
 
 export class Task{

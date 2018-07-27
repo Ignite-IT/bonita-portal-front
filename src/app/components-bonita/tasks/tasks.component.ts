@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import {SafeResourceUrl } from '@angular/platform-browser';
 
@@ -14,12 +14,15 @@ import {Task, Form} from '../../models/bonita';
   selector: 'tasks',
   templateUrl: './tasks.component.html'
 })
-export class TasksComponent extends GenericFormComponent implements OnInit {
+export class TasksComponent extends GenericFormComponent implements OnInit, OnDestroy {
   public tasks: Task[] = [];
   public params: any = {s: null};
   
   public task: Task = null;
   public url: SafeResourceUrl = null;
+
+  //Observables
+  private taskFinish: any;
 
   constructor(private bonitaService: BonitaService, private globalVars: GlobalVars, private bonitaCommunicate: BonitaCommunicate) {
     super();
@@ -27,6 +30,12 @@ export class TasksComponent extends GenericFormComponent implements OnInit {
 
   ngOnInit() {
     this.filter();
+    
+    this.taskFinish = this.bonitaCommunicate.taskFinishPop$.subscribe(
+        (data: any) => {            
+            this.filter();
+        }
+    );
   }
   
   /** Si no se le pasa pagina actualiza en la que esta */
@@ -96,5 +105,10 @@ export class TasksComponent extends GenericFormComponent implements OnInit {
             this.showError({msj: 'Hubo un problema abriendo la tarea'});
         }
     );
+  }
+  
+  //OnDestroy
+  ngOnDestroy() {
+    this.taskFinish.unsubscribe();
   }
 }

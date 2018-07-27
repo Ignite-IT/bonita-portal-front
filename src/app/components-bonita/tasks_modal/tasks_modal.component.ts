@@ -37,6 +37,7 @@ export class TasksModalComponent implements OnInit, OnDestroy {
         this.show= false;
         this.url = null;
         this.task = null;
+        this.bonitaCommunicate.taskFinishPopUp(null);
     });
   }
     

@@ -1,0 +1,193 @@
+<div #solicitudModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" *ngIf="show">
+            <div class="modal-header">
+                <h5 class="modal-title">Solicitud del Tramite</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">&times;</button>                
+                
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12" *ngIf="solicitud">
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Lugar Solicitud</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">{{solicitud.lugar_solicitud}}</p>
+                        </div>
+                        <div class="col-2">
+                            <label class="col-form-label">Fecha</label>
+                        </div>
+                        <div class="col-3">
+                            <p class="col-form-p">{{solicitud.fecha_solicitud | date:'dd/MM/yyyy HH:mm'}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Cartera Abierta</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.cartera_abierta">SI</span>
+                                <span *ngIf="!solicitud.cartera_abierta">NO</span>
+                            </p>                        
+                        </div>
+                        <div class="col-2">
+                            <label class="col-form-label">Medio Pago</label>
+                        </div>                        
+                        <div class="col-2">
+                            <p class="col-form-p">{{solicitud.medio_pago}}</p>
+                        </div>
+                        <div class="col-2">
+                            <label class="col-form-label">Forma Cobro</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">{{solicitud.forma_cobro}}</p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Admisible</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.admisible_delegacion">SI</span>
+                                <span *ngIf="!solicitud.admisible_delegacion">NO</span>
+                            </p>
+                        </div>
+                        <div class="col-2">
+                            <label class="col-form-label">Evaluador</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-4">{{solicitud.evaluador}}</p>
+                        </div>                            
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Informe Ingresos</label>
+                        </div> 
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.requiere_inf_ingresos">SI</span>
+                                <span *ngIf="!solicitud.requiere_inf_ingresos">NO</span>
+                            </p>
+                        </div> 
+                        <div class="col-2">
+                            <label class="col-form-label">Informe Haberes</label>
+                        </div> 
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.requiere_inf_haberes">SI</span>
+                                <span *ngIf="!solicitud.requiere_inf_haberes">NO</span>
+                            </p>
+                        </div> 
+                        <div class="col-2">
+                            <label class="col-form-label">Informacion Adicional Seguros</label>
+                        </div> 
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.requiere_inf_seguros">SI</span>
+                                <span *ngIf="!solicitud.requiere_inf_seguros">NO</span>
+                            </p>
+                        </div> 
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Inconsistencia Ingresos</label>
+                        </div> 
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.inconsistencia_ingresos">SI</span>
+                                <span *ngIf="!solicitud.inconsistencia_ingresos">NO</span>
+                            </p>
+                        </div> 
+                        <div class="col-2">
+                            <label class="col-form-label">Prestamo Vigente</label>
+                        </div>    
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.ptmo_vigente">SI</span>
+                                <span *ngIf="!solicitud.ptmo_vigente">NO</span>
+                            </p>
+                        </div> 
+                        <div class="col-2">
+                            <label class="col-form-label">Especial</label>
+                        </div> 
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.caso_especial">SI</span>
+                                <span *ngIf="!solicitud.caso_especial">NO</span>
+                            </p>
+                        </div> 
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Informacion Adicional</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.requiere_inf_evaluador">SI</span>
+                                <span *ngIf="!solicitud.requiere_inf_evaluador">NO</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Monto</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">$ {{solicitud.monto_evaluador}}</p>
+                        </div>
+                        <div class="col-2">
+                            <label class="col-form-label">Plazo</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">{{solicitud.plazo_evaluador}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Calificacion Evaluador</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">{{solicitud.califica_evaluador}}</p>
+                        </div>
+                        
+                        <div class="col-2">
+                            <label class="col-form-label">Recomendacion</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">{{solicitud.recomendacion}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label class="col-form-label">Confirma Evaluacion</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.confirma_evaluacion">SI</span>
+                                <span *ngIf="!solicitud.confirma_evaluacion">NO</span>
+                            </p>
+                        </div>
+                        <div class="col-2">
+                            <label class="col-form-label">Calificacion</label>
+                        </div>
+                        <div class="col-2">
+                            <p class="col-form-p">{{solicitud.calificacion}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

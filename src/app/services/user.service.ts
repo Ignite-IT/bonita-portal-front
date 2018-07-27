@@ -60,6 +60,11 @@ export class UserService{
         );
     }
     
+    sessionExpired() {
+        this.globalVars.deleteSessionData();
+        this.logoutUserSource.next();
+    }
+    
     logout() {
         const url = `${this.globalVars.apiHost}${this.loginUrl}`;
         this.globalVars.deleteSessionData();
