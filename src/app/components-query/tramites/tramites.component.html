@@ -31,15 +31,33 @@
                                 </div>
                             </div>
                             
-<!--                            <div class="col-md-4">
+                            <div class="col-md-4">
                                 <div class="form-group ordenar">
-                                    <select style="width:100%" name="t_id_estado_tramite" id="t_id_estado_tramite"  class="form-control col-md-12" [(ngModel)]="params.t_id_estado_tramite" (change)="filter(1)" >                                
+                                    <select style="width:100%" name="tm_grupo" id="tm_grupo"  class="form-control col-md-12" [(ngModel)]="params.tm_grupo" (change)="filter(1)" >                                
+                                        <option [ngValue]="null">Sin filtrar Oficina</option>
+                                        <option *ngFor="let grupo of grupos" [value]="grupo.grupo">{{grupo.descripcion}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group ordenar">
+                                    <select style="width:100%" name="tm_cod_actividad" id="tm_cod_actividad"  class="form-control col-md-12" [(ngModel)]="params.tm_cod_actividad" (change)="filter(1)" >                                
+                                        <option [ngValue]="null">Sin filtrar Actividad</option>
+                                        <option *ngFor="let actividad of actividades" [value]="actividad.cod_actividad">{{actividad.descripcion}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group ordenar">
+                                    <select style="width:100%" name="t_estado" id="t_estado"  class="form-control col-md-12" [(ngModel)]="params.t_estado" (change)="filter(1)" >                                
                                         <option [ngValue]="null">Sin filtrar estado</option>
                                         <option value="!18">En Curso</option>
                                         <option value="18">Finalizado</option>
                                     </select>
                                 </div>
-                            </div>-->
+                            </div>
                         </form>
                     </div>
                 </div>

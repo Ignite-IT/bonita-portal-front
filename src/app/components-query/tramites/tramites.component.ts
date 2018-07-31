@@ -6,6 +6,7 @@ import {QueryService} from '../query.service';
 import {QueryCommunicate} from '../query.communicate';
 
 import {Tramite} from '../../models/tramite';
+import {Grupo, Actividad} from '../models';
 
 import {GenericFormComponent} from '../../directives-component/components/generic-form.component';
 
@@ -15,7 +16,9 @@ import {GenericFormComponent} from '../../directives-component/components/generi
 })
 export class TramitesComponent extends GenericFormComponent implements OnInit {
   public datos: any[] = [];
-  public params: any = {t_matricula: null, t_cuil: null, t_id_estado_tramite: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null };
+  public grupos: Grupo[]  = [];
+  public actividades: Actividad[]  = [];
+  public params: any = {t_matricula: null, t_cuil: null, t_estado: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null };
 
   public tiposPrestamo: any[] = environment.tiposPrestamo;
 
@@ -25,6 +28,14 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
 
   ngOnInit() {
     this.filter();
+    
+    this.queryService.grupos().subscribe(
+        (grupos: Grupo[]) => {this.grupos = grupos;}
+    );
+    
+    this.queryService.actividades().subscribe(
+        (actividades: Actividad[]) => {this.actividades = actividades;}
+    );
   }
   
   /** Si no se le pasa pagina actualiza en la que esta */
@@ -42,7 +53,7 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
   }
   
   public resetFilter(){
-    this.params = {t_matricula: null, t_cuil: null, t_id_estado_tramite: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null };
+    this.params = {t_matricula: null, t_cuil: null, t_estado: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null };
     this.filter();
   }  
   
