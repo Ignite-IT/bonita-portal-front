@@ -18,7 +18,7 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
   public datos: any[] = [];
   public grupos: Grupo[]  = [];
   public actividades: Actividad[]  = [];
-  public params: any = {t_matricula: null, t_cuil: null, t_estado: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null };
+  public params: any = {t_matricula: null, t_cuil: null, t_estado: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null, pagina: 1, porPagina: 10 };
 
   public tiposPrestamo: any[] = environment.tiposPrestamo;
 
@@ -39,12 +39,14 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
   }
   
   /** Si no se le pasa pagina actualiza en la que esta */
-  public filter(page?, event?){
-    this.cursorWait();    
+  public filter(pagina?, event?){
+    this.cursorWait();
+    this.params.pagina = pagina || this.params.pagina;
     this.queryService.queryTramites(this.params).subscribe(
         (datos) => {
             this.cursorDefault();
-            this.datos = datos;
+            this.datos = datos.data;
+            this.assemblePager(datos.info);
         },
         error => {
             this.cursorDefault();
@@ -53,8 +55,8 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
   }
   
   public resetFilter(){
-    this.params = {t_matricula: null, t_cuil: null, t_estado: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null };
-    this.filter();
+    this.params = {t_matricula: null, t_cuil: null, t_estado: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null, pagina: 1, porPagina: 10 };
+    this.filter(1);
   }  
   
   //

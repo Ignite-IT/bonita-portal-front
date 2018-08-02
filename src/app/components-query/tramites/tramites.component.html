@@ -91,7 +91,8 @@
                             </tr>                                
                         </tbody>
                     </table>
-                </div>
+                    <pager [info]="info" [actualPage]="params.pagina" (filter)="filter($event)"></pager>
+                </div>                
             </div>
         </div>
     </div>

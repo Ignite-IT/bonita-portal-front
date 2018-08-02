@@ -97,7 +97,7 @@ export class TasksComponent extends GenericFormComponent implements OnInit, OnDe
             } else {
                 url += '?';
             }
-            url += 'id=' + task.id;
+            url += 'id=' + task.id + '&usuario=' + this.globalVars.getActualUser().user_name;
             this.url = this.globalVars.linkSanitizer(url);
             this.bonitaCommunicate.taskModalPopUp(this.task, this.url);
         },
