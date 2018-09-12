@@ -4,9 +4,11 @@ import {environment} from '../../../environments/environment';
 
 import {QueryService} from '../query.service';
 import {QueryCommunicate} from '../query.communicate';
+import {CpsmService} from '../../services/cpsm.service';
 
 import {Tramite} from '../../models/tramite';
 import {Grupo, Actividad} from '../models';
+import {DistritoDetalle} from '../../models/cpsm';
 
 import {GenericFormComponent} from '../../directives-component/components/generic-form.component';
 
@@ -18,11 +20,12 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
   public datos: any[] = [];
   public grupos: Grupo[]  = [];
   public actividades: Actividad[]  = [];
-  public params: any = {t_matricula: null, t_cuil: null, t_estado: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null, pagina: 1, porPagina: 10 };
+  public distritos: DistritoDetalle[] = [];
+  public params: any = {t_matricula: null, t_cuil: null, t_estado: null, t_distrito: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null, pagina: 1, porPagina: 10 };
 
   public tiposPrestamo: any[] = environment.tiposPrestamo;
 
-  constructor(private queryService: QueryService, protected queryCommunicate: QueryCommunicate) {
+  constructor(private queryService: QueryService, protected queryCommunicate: QueryCommunicate, private cpsmService: CpsmService) {
     super();
   }
 
@@ -31,10 +34,12 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
     
     this.queryService.grupos().subscribe(
         (grupos: Grupo[]) => {this.grupos = grupos;}
-    );
-    
+    );    
     this.queryService.actividades().subscribe(
         (actividades: Actividad[]) => {this.actividades = actividades;}
+    );
+    this.cpsmService.getDistritosCaja().subscribe(
+        (distritos: DistritoDetalle[]) => {this.distritos = distritos;}
     );
   }
   

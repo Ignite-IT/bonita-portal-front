@@ -13,7 +13,7 @@ export const environment = {
   apiHostCaja: "http://localhost/caja-forms-api/",
   //apiHostCaja: "http://200.41.233.251:4423/caja-forms-api/",
     
-  apiHostMedicos: "http://camarasignite.ddns.net/caja-forms-api/cpsmSimulador/",
+  apiHostMedicos: "http://localhost/caja-forms-api/cpsmSimulador/",
   
   defaultPage: '/tasks',
   

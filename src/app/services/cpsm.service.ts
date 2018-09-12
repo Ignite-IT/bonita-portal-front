@@ -11,7 +11,7 @@ import { GlobalVars } from '../services/globalVars';
 import { Cache } from '../services/cache';
 
 import {PrecargaSolicitud, LineaVigente, MatrizFinanciamiento, Distrito, AptitudPrestamo, AptitudPrestamo2, MedioPago, Aval, Inmueble, 
-    Cft, DeudaPrestamo, DeudaAporteInch, ValorUcp} from '../models/cpsm';
+    Cft, DeudaPrestamo, DeudaAporteInch, ValorUcp, DistritoDetalle} from '../models/cpsm';
 
 @Injectable()
 export class CpsmService{
@@ -134,5 +134,10 @@ export class CpsmService{
         let params= {periodo: periodo};
         const url = `${this.globalVars.apiHostMedicos}valorUCP`;
         return this.http.get<ValorUcp>(url, this.globalVars.getOptionsRequest(params));
+    }
+    
+    getDistritosCaja(): Observable<DistritoDetalle[]> {
+        const url = `${this.globalVars.apiHostMedicos}getDistritosCaja`;
+        return this.http.get<DistritoDetalle[]>(url, this.globalVars.getOptionsRequest());
     }
 }

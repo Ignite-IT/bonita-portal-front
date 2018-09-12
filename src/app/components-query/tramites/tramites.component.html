@@ -33,6 +33,15 @@
                             
                             <div class="col-md-4">
                                 <div class="form-group ordenar">
+                                    <select style="width:100%" name="t_distrito" id="t_distrito" class="form-control col-md-12" [(ngModel)]="params.t_distrito" (change)="filter(1)" >                                
+                                        <option [ngValue]="null">Sin filtrar distrito</option>
+                                        <option *ngFor="let distrito of distritos" [value]="distrito.distrito">{{distrito.distritoRomano}} {{distrito.nombre}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group ordenar">
                                     <select style="width:100%" name="tm_grupo" id="tm_grupo"  class="form-control col-md-12" [(ngModel)]="params.tm_grupo" (change)="filter(1)" >                                
                                         <option [ngValue]="null">Sin filtrar Oficina</option>
                                         <option *ngFor="let grupo of grupos" [value]="grupo.grupo">{{grupo.descripcion}}</option>

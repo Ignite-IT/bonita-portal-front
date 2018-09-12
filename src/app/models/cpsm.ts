@@ -171,3 +171,11 @@ export interface DeudaAporteInch {
 export interface ValorUcp {
     importe: number;
 }
+
+export interface DistritoDetalle {
+    distrito: number;
+    distritoRomano: string;
+    fechaDesde: any;
+    fechaHasta: any;
+    nombre: string;
+}
