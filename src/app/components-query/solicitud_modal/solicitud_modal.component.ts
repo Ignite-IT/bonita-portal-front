@@ -2,8 +2,10 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 
 import {QueryService} from '../query.service';
 import {QueryCommunicate} from '../query.communicate';
+import {CpsmService} from '../../services/cpsm.service';
 
 import {Tramite, SolicitudPrestamo} from '../../models/tramite';
+import {MedioPago} from '../../models/cpsm';
  
 import {GenericFormComponent} from '../../directives-component/components/generic-form.component';
 
@@ -19,11 +21,12 @@ export class SolicitudModalComponent extends GenericFormComponent implements OnI
   public show: boolean= false;
   public tramite: Tramite;
   public solicitud: SolicitudPrestamo;
+  public extraDetalle = {forma_cobro: ''};
   
   //Observables
   private sollicitudModal: any;
     
-  constructor(private queryService: QueryService, private queryCommunicate: QueryCommunicate) {
+  constructor(private queryService: QueryService, private queryCommunicate: QueryCommunicate, private cpsmService: CpsmService) {
     super();
   }
 
@@ -33,7 +36,19 @@ export class SolicitudModalComponent extends GenericFormComponent implements OnI
             this.tramite= tramite;
             this.load();
             this.queryService.prestamoTramite(this.tramite.id_tramite).subscribe(
-                (solicitud: SolicitudPrestamo) => {this.solicitud= solicitud;},
+                (solicitud: SolicitudPrestamo) => {
+                    this.solicitud= solicitud;
+                    this.cpsmService.mediosPago(this.solicitud.concepto).subscribe(
+                        (mediosPagos: MedioPago[]) => {
+                            for (let medio of mediosPagos) {
+                                if (medio.codigoMedioPago == Number(this.solicitud.forma_cobro)) {
+                                    this.extraDetalle.forma_cobro = medio.descripcionMedioPago;
+                                    break;
+                                }
+                            }
+                        }
+                    );
+                },
                 error => {
                     alert('El tramite todavia no cuenta con una solicitud de prestamo');
                 }

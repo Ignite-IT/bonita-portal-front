@@ -363,6 +363,7 @@ export class TramiteMovimiento{
     public id_tramite: number;
     public fecha: any;
     public usuario: number;
+    public usuario_detalle: string;
     public grupo: number;
     public cod_actividad: string;
     public observaciones: string;
@@ -375,6 +376,7 @@ export class TramiteMovimiento{
             this.id_tramite= json.id_tramite;
             this.fecha= new Date(json.fecha);
             this.usuario= json.usuario;
+            this.usuario_detalle = json.usuario_detalle;
             this.grupo= json.grupo;
             this.cod_actividad= json.cod_actividad;
             this.observaciones= json.observaciones;

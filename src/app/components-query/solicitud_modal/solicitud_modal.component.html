@@ -43,7 +43,7 @@
                             <label class="col-form-label">Forma Cobro</label>
                         </div>
                         <div class="col-2">
-                            <p class="col-form-p">{{solicitud.forma_cobro}}</p>
+                            <p class="col-form-p">{{extraDetalle.forma_cobro}}</p>
                         </div>
                         
                     </div>
@@ -143,13 +143,19 @@
                             <label class="col-form-label">Monto</label>
                         </div>
                         <div class="col-2">
-                            <p class="col-form-p">$ {{solicitud.monto_evaluador}}</p>
+                            <p class="col-form-p">$ 
+                                <span *ngIf="solicitud.monto_evaluador">{{solicitud.monto_evaluador}}</span>
+                                <span *ngIf="! solicitud.monto_evaluador">{{solicitud.monto_solicitado}}</span>
+                            </p>
                         </div>
                         <div class="col-2">
                             <label class="col-form-label">Plazo</label>
                         </div>
                         <div class="col-2">
-                            <p class="col-form-p">{{solicitud.plazo_evaluador}}</p>
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.plazo_evaluador">{{solicitud.plazo_evaluador}}</span>
+                                <span *ngIf="! solicitud.plazo_evaluador">{{solicitud.plazo_solicitado}}</span>
+                            </p>
                         </div>
                     </div>
                     
@@ -158,7 +164,11 @@
                             <label class="col-form-label">Calificacion Evaluador</label>
                         </div>
                         <div class="col-2">
-                            <p class="col-form-p">{{solicitud.califica_evaluador}}</p>
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.califica_evaluador == 'C'">Caso Comun</span>
+                                <span *ngIf="solicitud.califica_evaluador == 'E'">Caso Especial</span>
+                                <span *ngIf="solicitud.califica_evaluador == 'A'">Caso para Archivo</span>
+                            </p>
                         </div>
                         
                         <div class="col-2">
@@ -183,7 +193,11 @@
                             <label class="col-form-label">Calificacion</label>
                         </div>
                         <div class="col-2">
-                            <p class="col-form-p">{{solicitud.calificacion}}</p>
+                            <p class="col-form-p">
+                                <span *ngIf="solicitud.calificacion == 'C'">Caso Comun</span>
+                                <span *ngIf="solicitud.calificacion == 'E'">Caso Especial</span>
+                                <span *ngIf="solicitud.calificacion == 'A'">Caso para Archivo</span>
+                            </p>
                         </div>
                     </div>
                 </div>

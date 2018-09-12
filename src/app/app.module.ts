@@ -12,6 +12,7 @@ import { ProjectUtils } from './services/utils';
 
 import {UserService} from './services/user.service';
 import {DocumentacionService} from './services/documentacion.service';
+import {CpsmService} from './services/cpsm.service';
 
 import {CommonInterceptor} from './http/CommonInterceptor';
 
@@ -53,6 +54,7 @@ import { AuthGuard, NoLogin }   from './auth/authguard';
     
     UserService,
     DocumentacionService,
+    CpsmService,
     
     AuthGuard,
     NoLogin,

@@ -17,6 +17,7 @@ export class GlobalVars {
         
     public apiHost: string= environment.apiHost;
     public apiHostCaja: string = environment.apiHostCaja;
+    public apiHostMedicos: string = environment.apiHostMedicos;
 
     // Observable string sources
     private logoutUserSource = new Subject<any>();
