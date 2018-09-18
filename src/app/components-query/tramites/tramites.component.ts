@@ -21,7 +21,7 @@ export class TramitesComponent extends GenericFormComponent implements OnInit {
   public grupos: Grupo[]  = [];
   public actividades: Actividad[]  = [];
   public distritos: DistritoDetalle[] = [];
-  public params: any = {t_matricula: null, t_cuil: null, t_estado: null, t_distrito: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null, pagina: 1, porPagina: 10 };
+  public params: any = {t_matricula: null, t_cuil: null, t_nro_expediente: null, t_estado: null, t_distrito: null, s_tipo_prestamo: null, tm_grupo: null, tm_cod_actividad: null, pagina: 1, porPagina: 10 };
 
   public tiposPrestamo: any[] = environment.tiposPrestamo;
 
