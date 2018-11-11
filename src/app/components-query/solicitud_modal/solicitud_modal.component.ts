@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import {QueryService} from '../query.service';
 import {QueryCommunicate} from '../query.communicate';
 import {CpsmService} from '../../services/cpsm.service';
+import {GlobalVars} from '../../services/globalVars';
 
 import {Tramite, SolicitudPrestamo} from '../../models/tramite';
 import {MedioPago} from '../../models/cpsm';
@@ -26,7 +27,7 @@ export class SolicitudModalComponent extends GenericFormComponent implements OnI
   //Observables
   private sollicitudModal: any;
     
-  constructor(private queryService: QueryService, private queryCommunicate: QueryCommunicate, private cpsmService: CpsmService) {
+  constructor(private queryService: QueryService, private queryCommunicate: QueryCommunicate, private cpsmService: CpsmService, private globalVars: GlobalVars) {
     super();
   }
 
@@ -34,20 +35,25 @@ export class SolicitudModalComponent extends GenericFormComponent implements OnI
       this.sollicitudModal = this.queryCommunicate.solicitudModalPop$.subscribe(
         (tramite: Tramite) => {
             this.tramite= tramite;
-            this.load();
+            //this.load();
             this.queryService.prestamoTramite(this.tramite.id_tramite).subscribe(
                 (solicitud: SolicitudPrestamo) => {
                     this.solicitud= solicitud;
-                    this.cpsmService.mediosPago(this.solicitud.concepto).subscribe(
-                        (mediosPagos: MedioPago[]) => {
-                            for (let medio of mediosPagos) {
-                                if (medio.codigoMedioPago == Number(this.solicitud.forma_cobro)) {
-                                    this.extraDetalle.forma_cobro = medio.descripcionMedioPago;
-                                    break;
-                                }
-                            }
-                        }
-                    );
+                    if (this.solicitud.es_hipotecario) {
+                        window.open('https://www.cajademedicos.com.ar/aplicaciones/jsp/prestamos_hip/resumen_expediente.jsp?idexped=' + this.tramite.nro_expediente);
+                    } else {
+                        window.open(this.globalVars.apiHostCaja + 'form_001/solpmo02/resumenExpediente?id_tramite=' + this.tramite.id_tramite);
+                    }
+//                    this.cpsmService.mediosPago(this.solicitud.concepto).subscribe(
+//                        (mediosPagos: MedioPago[]) => {
+//                            for (let medio of mediosPagos) {
+//                                if (medio.codigoMedioPago == Number(this.solicitud.forma_cobro)) {
+//                                    this.extraDetalle.forma_cobro = medio.descripcionMedioPago;
+//                                    break;
+//                                }
+//                            }
+//                        }
+//                    );
                 },
                 error => {
                     alert('El tramite todavia no cuenta con una solicitud de prestamo');
