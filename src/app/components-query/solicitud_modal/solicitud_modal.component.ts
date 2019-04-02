@@ -40,7 +40,7 @@ export class SolicitudModalComponent extends GenericFormComponent implements OnI
                 (solicitud: SolicitudPrestamo) => {
                     this.solicitud= solicitud;
                     if (this.solicitud.es_hipotecario) {
-                        window.open('https://www.cajademedicos.com.ar/aplicaciones/jsp/prestamos_hip/resumen_expediente.jsp?idexped=' + this.tramite.nro_expediente);
+                        window.open('https://www.cajademedicos.com.ar/aplicaciones/jsp/prestamos_hip/resumen_expediente.jsp?idexped=' + this.solicitud.tramite.nro_expediente);
                     } else {
                         window.open(this.globalVars.apiHostCaja + 'form_001/solpmo02/resumenExpediente?id_tramite=' + this.tramite.id_tramite);
                     }
