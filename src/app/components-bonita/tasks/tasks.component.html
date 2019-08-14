@@ -31,7 +31,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Prioridad</th>
+                                <!--th>Prioridad</th-->
                                 <th>Vencimiento</th>
                                 <th>Asignada</th>
                                 <th></th>
@@ -41,7 +41,7 @@
                             <tr *ngFor='let task of tasks'>
                                 <td>{{task.id}}</td>
                                 <td>{{task.displayName}}</td>
-                                <td>{{task.priority}}</td>
+                                <!--td>{{task.priority}}</td-->
                                 <td>
                                     <span *ngIf="task.dueDate != ''">{{task.dueDate | date: 'dd/MM/yyyy hh:mm:ss'}}</span>
                                     <span *ngIf="task.dueDate == ''">-</span>
